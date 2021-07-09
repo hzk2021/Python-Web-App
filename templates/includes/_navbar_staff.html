@@ -1,0 +1,70 @@
+{% extends '/includes/_navbar_base.html' %}
+
+{% block content %}
+  <ul class="navbar-nav ml-auto">
+
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" id="navbardrop_temperature" data-toggle="dropdown">
+          Temperature Monitoring
+      </a>
+      <div class="dropdown-menu">
+          <a class="dropdown-item" href="/createEntry">Create Entry</a>
+          <a class="dropdown-item" href="/showEntries">Show All Entries</a>
+          <a class="dropdown-item" href="/showPieChart">Show Pie Chart</a>
+          <a class="dropdown-item" href="/showLineChart">Show Line Chart</a>
+          <a class="dropdown-item" href="/showBarChart">Show Bar Chart</a>
+      </div>
+    </li>
+
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" id="navbardrop_reward" data-toggle="dropdown">
+        Rewards
+      </a>
+      <div class="dropdown-menu">
+        <a class="dropdown-item" href="/createReward">Create Reward</a>
+        <a class="dropdown-item" href="/showRewards">Show Rewards</a>
+      </div>
+    </li>
+
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" id="navbardrop_support" data-toggle="dropdown">
+        Customer Support
+      </a>
+      <div class="dropdown-menu">
+        <a class="dropdown-item" href="/retrieve_feedback">Retrieve Feedback
+        </a>
+      </div>
+    </li>
+
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" id="navbardrop_suppliers" data-toggle="dropdown">
+        Suppliers
+      </a>
+      <div class="dropdown-menu">
+        <a class="dropdown-item" href="/addSupplier">Add Supplier</a>
+        <a class="dropdown-item" href="/listSupplier">Show Suppliers</a>
+      </div>
+    </li>
+
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" id="navbardrop_order" data-toggle="dropdown">
+        Order Processing
+      </a>
+      <div class="dropdown-menu">
+        <a class="dropdown-item" href="/createOrder">Create Order</a>
+        <a class="dropdown-item" href="/listOrder">Order List</a>
+      </div>
+    </li>
+
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" id="navbardrop_inventory" data-toggle="dropdown">
+        Store inventory
+      </a>
+      <div class="dropdown-menu">
+        <a class="dropdown-item" href="/view">Add product</a>
+        <a class="dropdown-item" href="/retrieveproduct">View shop</a>
+      </div>
+    </li>
+
+  </ul>
+{% endblock %}

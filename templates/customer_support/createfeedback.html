@@ -1,0 +1,45 @@
+{% extends "home_customer.html" %}
+{% block title %}ATRIX - Create Feedback{% endblock %}
+
+{% block navbar %}
+    {% include "includes/_navbar_customer.html" %}
+{% endblock %}
+
+{% block content %}
+{% from "includes/_formHelper.html" import render_field %}
+
+<div class="wrapper">
+    <div class="form-header">
+        <h1>Feedback Form</h1>
+    </div>
+
+    <div class="entry-form">
+        <form method="POST" action="" >
+
+        <div class="form-group">
+        {{ render_field(form.name, class="form-control",placeholder="Enter name")}}
+        </div>
+
+        <div class="form-group">
+        {{ render_field(form.phone, class="form-control",placeholder="Enter phone number")}}
+        </div>
+
+        <div class="form-group">
+        {{ render_field(form.email, class="form-control",placeholder="Enter email") }}
+        </div>
+
+         <div class="form-group">
+        {{ render_field(form.enquiry, class="form-control",placeholder="Enter Remarks") }}
+        </div>
+
+        <div class="form-group">
+        {{ render_field(form.service, class="form-control",placeholder="Choose service") }}
+        </div>
+
+        <input type="submit" value="Submit" class="btn btn-primary"/>
+        </form>
+    </div>
+</div>
+
+
+{% endblock %}

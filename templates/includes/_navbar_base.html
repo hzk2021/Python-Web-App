@@ -1,0 +1,12 @@
+<nav class="navbar navbar-expand-sm custom-nav">
+  <!-- Brand -->
+  <a class="navbar-brand" href="/">
+    <img src="{{ url_for('static', filename='images/storelogo.png') }}" alt="storelogo" style="width:auto; height: auto; max-height: 55px; min-width: 40px;">
+    <i class="storeTitle">Infinito - ATRiX</i>
+  </a>
+
+  {% block content %}
+
+  {% endblock %}
+
+</nav>

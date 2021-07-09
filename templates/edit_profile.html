@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}ATRiX - Update Profile{% endblock %}
+
+{% block content %}
+{% from "includes/_formHelper.html" import render_field %}
+<div class="wrapper">
+    <div class="form-header">
+        <h1>Update Profile</h1>
+    </div>
+    <div class="entry-form">
+        <form method="POST" action="">
+          <div class="form-group">
+            {{ render_field(form.username, class="form-control", disabled=true) }}
+          </div>
+          <div class="form-group">
+            {{ render_field(form.password, class="form-control") }}
+          </div>
+          <div class="form-group">
+            {{ render_field(form.email, class="form-control", disabled=true)}}
+          </div>
+          <div class="form-group">
+            {{ render_field(form.phone_number, class="form-control") }}
+          </div>
+          <div class="form-group">
+            {{ render_field(form.points, class="form-control", disabled=true) }}
+          </div>
+          <input type="submit" value="Update" class="btn btn-primary"/>
+        </form>
+    </div>
+</div>
+{% endblock %}
+

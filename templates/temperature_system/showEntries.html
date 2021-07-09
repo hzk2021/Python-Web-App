@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% block title %}ATRiX - Show Entries{% endblock %}
+
+{% block navbar %}
+    {% include "includes/_navbar_staff.html" %}
+{% endblock %}
+
+{% block content %}
+<div>
+  <!-- <p>There are {{ count }} entries in the database.</p> -->
+  <p ></p>
+  <table class="table-styling">
+    <thead>
+      <tr>
+        <th>Entry ID</th>
+        <th>Full Name</th>
+        <th>NRIC/FIN</th>
+        <th>Phone No.</th>
+        <th>Temperature (°C)</th>
+        <th>Date of visit</th>
+        <th>Entry Time</th>
+        <th>Exit Time</th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for entry in entries_list %}
+      <tr>
+        <td>{{ entry.get_entry_id() }}</td>
+        <td>{{ entry.get_full_name() }}</td>
+        <td>{{ entry.get_nric() }}</td>
+        <td>{{ entry.get_phone_no() }}</td>
+        {% if entry.get_temperature() > 37.5 or entry.get_temperature() < 35 %}
+          <td style="color: red;">
+            {{ entry.get_temperature(), "Abnormal" }}
+          </td>
+        {% else %}
+          <td style="color: green">
+            {{ entry.get_temperature(), "Normal"}}
+          </td>
+        {% endif %}
+        <td>{{ entry.get_date() }}</td>
+        <td>{{ entry.get_entry_time() }}</td>
+        {% if entry.get_exit_time() == "Click to exit" %}
+          <th>
+            <form action="{{ url_for('update_exit_time', id=entry.get_entry_id()) }}" method="POST">
+              <input type="submit" value="{{ entry.get_exit_time() }}" class="btn btn-outline-secondary rounded-circle">
+            </form>
+          </th>
+        {% else %}
+          <td><a href="#" class="btn btn-outline-primary rounded-circle disabled">{{ entry.get_exit_time() }}</a></td>
+        {% endif %}
+        <td><a href="{{ url_for('update_entry', id=entry.get_entry_id()) }}" class="btn btn-warning">Update</a></td>
+        <td>
+          <form action="{{ url_for('delete_entry', id=entry.get_entry_id()) }}" method="POST">
+            <input type="submit" value="Delete" class="btn btn-danger" onclick="return confirm('Confirm delete?');">
+          </form>
+        </td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}
+

@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}ATRiX - Show No Rewards Page{% endblock %}
+
+{% block navbar %}
+    {% include "includes/_navbar_customer.html" %}
+{% endblock %}
+
+{% block content %}
+<div>
+  <!-- <p>There are {{ count }} entries in the database.</p> -->
+  <p>">
+    <h1 style="text-align: center; color: white;">No Rewards Available!</h1>
+  </p>
+  <table class="table-styling">
+    <thead>
+      <tr>
+        <th>Reward Name</th>
+        <th>Points</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for reward in rewards_list %}
+      <tr>
+        <td>{{ reward.get_name() }}</td>
+        <td>{{ reward.get_points() }}</td>
+        <td>
+          <form action="{{ url_for('claim_reward', reward_name=reward.get_name() , points=reward.get_points()) }}" method="POST">
+            <input type="submit" value="Claim" class="btn btn-success" onclick="return confirm('Confirm Claim?');">
+          </form>
+        </td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}
+

@@ -1,0 +1,93 @@
+{% extends "home_staff.html" %}
+{% block title %}ATRIX- Retrieve products{% endblock %}
+
+{% block navbar %}
+    {% include "includes/_navbar_staff.html" %}
+{% endblock %}
+
+{% block content %}
+
+<h1 style="text-align:center; color: white;" class="display-4">Retrieve products</h1>
+<div style="color: white;">
+  {% if count == 0 %}
+  <p style="text-align:center;">There are no products.</p>
+  {% elif count == 1 %}
+  <p style="text-align:center;">There is a product.</p>
+  {% else %}
+  <p style="text-align:center;">There are {{ count }} products.</p>
+  {% endif %}
+</div>
+<div>
+  <table class="table-styling">
+    <thead>
+      <tr>
+        <th>product ID</th>
+        <th>image</th>
+        <th>Name</th>
+        <th>Stock</th>
+        <th>Price($)</th>
+        <th>Details</th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for products in products_list %}
+      <tr>
+        <td style="width:150px;">{{ products.get_product_id() }}</td>
+        <td style="width:150px;height:150px;"><img src="C:\Users\blaze\Desktop\ATRiX (Integration)\static\asus 4.jpg"></td>
+        <td style="width:150px;">{{ products.get_name() }}</td>
+        <td style="width:150px;">{{ products.get_stock() }}</td>
+        <td style="width:150px;">{{ products.get_price() }}</td>
+        <td style="width:150px;">{{ products.get_specs() }}</td>
+        <td style="width:150px;"><a href="/updateProduct/{{products.get_product_id()}}" class="btn btn-warning">Update</a></td>
+        <td style="width:150px;">
+
+          <form action="{{url_for('delete_product', id=products.get_product_id())}}" method="POST">
+
+              <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal_{{products.get_product_id()}}">
+  Delete
+</button>
+
+<!-- The Modal -->
+<div class="modal" id="myModal_{{products.get_product_id()}}">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Removal confirmation</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+      Are you sure you want to remove {{products.get_name()}} from the list?
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <input type="submit" value="Delete" class="btn btn-danger">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+          </form>
+
+
+
+
+
+
+
+
+          </form>
+        </td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

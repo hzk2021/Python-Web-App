@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}ATRiX - Register{% endblock %}
+
+{% block content %}
+{% from "includes/_formHelper.html" import render_field %}
+<div class="wrapper">
+    <div class="form-header">
+        <h1>Register</h1>
+    </div>
+    <div class="entry-form">
+        {% if isExist == True %}
+        <div class="alert alert-danger alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert">&times</button>
+            {{ existUser }} has already been taken. Please use another username.
+        </div>
+        {% endif %}
+        <form method="POST" action="">
+          <div class="form-group">
+            {{ render_field(form.username, class="form-control") }}
+          </div>
+          <div class="form-group">
+            {{ render_field(form.password, class="form-control") }}
+          </div>
+          <div class="form-group">
+            {{ render_field(form.email, class="form-control") }}
+          </div>
+          <div class="form-group">
+            {{ render_field(form.phone_number, class="form-control") }}
+          </div>
+          <input type="submit" value="Register" class="btn btn-primary"/>
+        </form>
+    </div>
+</div>
+{% endblock %}
+

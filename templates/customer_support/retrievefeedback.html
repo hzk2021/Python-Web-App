@@ -1,0 +1,96 @@
+{% extends "home_staff.html" %}
+{% block title %}ATRIX- Retrieve Feedbacks{% endblock %}
+
+{% block content %}
+
+<h1 style="text-align:center; color: white;" class="display-4">Retrieve feedback</h1>
+<div style="color: white;">
+  {% if count == 0 %}
+  <p style="text-align:center;">There are no feedback.</p>
+  {% elif count == 1 %}
+  <p style="text-align:center;">There is a feedback.</p>
+  {% else %}
+  <p style="text-align:center;">There are {{ count }} Feedback.</p>
+  {% endif %}
+</div>
+<div>
+  <table class="table-styling">
+    <thead>
+      <tr>
+        <th>Feedback id</th>
+        <th>Name</th>
+        <th>Phone</th>
+        <th>Email</th>
+        <th>Enquiry</th>
+        <th>Service</th>
+        <th>Status</th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for Feedback in feedbacks_list %}
+      <tr>
+        <td>{{ Feedback.get_feedback_id() }}</td>
+        <td>{{ Feedback.get_name() }}</td>
+        <td>{{ Feedback.get_phone() }}</td>
+        <td>{{ Feedback.get_email() }}</td>
+        <td>{{ Feedback.get_enquiry() }}</td>
+        <td>{{ Feedback.get_service() }}</td>
+        {% if Feedback.get_status() == 'pending' %}
+          <td>pending</td>
+        {% elif Feedback.get_status() == 'processed' %}
+          <td>processed</td>
+        {% endif %}
+
+        <td><a href="/updatefeedback/{{Feedback.get_feedback_id()}}" class="btn btn-success">Update</a></td>
+        <td>
+
+          <form action="{{url_for('delete_feedback', id = Feedback.get_feedback_id())}}" method="POST">
+
+              <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal_{{Feedback.get_feedback_id()}}">
+  Delete
+</button>
+
+<!-- The Modal -->
+<div class="modal" id="myModal_{{Feedback.get_feedback_id()}}">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Removal confirmation</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+      Are you sure you want to remove {{Feedback.get_name()}} from the list?
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <input type="submit" value="Delete" class="btn btn-danger">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+          </form>
+
+
+
+
+
+
+
+
+          </form>
+        </td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

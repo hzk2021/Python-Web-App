@@ -1,0 +1,54 @@
+{% extends "home_customer.html" %}
+{% block title %}ATRIX- products{% endblock %}
+
+{% block navbar %}
+    {% include "includes/_navbar_customer.html" %}
+{% endblock %}
+
+{% block content %}
+
+<h1 style="text-align:center; color: white;" class="display-4">Products</h1>
+<div style="text-align:center; color: white;">
+  {% if count == 0 %}
+  <p style="text-align:center;">There are no products.</p>
+  {% elif count == 1 %}
+  <p style="text-align:center;">There is a product.</p>
+  {% else %}
+  <p style="text-align:center;">There are {{ count }} products.</p>
+  {% endif %}
+</div>
+<div>
+  <table class="table-styling">
+    <thead>
+      <tr>
+        <th>product ID</th>
+        <th>image</th>
+        <th>Name</th>
+        <th>Stock</th>
+        <th>price($)</th>
+        <th>Details</th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for products in products_list %}
+      <tr>
+        <td style="width:150px;">{{ products.get_product_id() }}</td>
+        <td style="width:150px;">{{ products.get_image() }}</td>
+        <td style="width:150px;">{{ products.get_name() }}</td>
+        <td style="width:150px;">{{ products.get_stock() }}</td>
+        <td style="width:150px;">{{ products.get_price() }}</td>
+        <td style="width:150px;">{{ products.get_specs() }}</td>
+        <td style="width:150px;"><a href="/add/{{products.get_product_id()}}" class="btn btn-warning">Add to cart</a></td>
+
+        <td>
+
+        </td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}
+

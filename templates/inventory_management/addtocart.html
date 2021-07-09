@@ -1,0 +1,97 @@
+{% extends "home_customer.html" %}
+{% block title %}ATRIX- Cart{% endblock %}
+
+{% block navbar %}
+    {% include "includes/_navbar_customer.html" %}
+{% endblock %}
+
+{% block content %}
+
+
+<h1 style="text-align:center; color: white;" class="display-4">Cart</h1>
+
+<div>
+  <table class="table-styling">
+    <thead>
+      <tr>
+        <th>product ID</th>
+        <th>image</th>
+        <th>Name</th>
+        <th>Stock</th>
+        <th>Price($)</th>
+        <th>Details</th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for items in item_list %}
+      <tr>
+        <td style="width:150px;">{{ items.get_product_id() }}</td>
+        <td style="width:150px;">{{ items.get_image() }}</td>
+        <td style="width:150px;">{{ items.get_name() }}</td>
+        <td style="width:150px;">{{ items.get_stock() }}</td>
+        <td style="width:150px;">{{ items.get_price() }}</td>
+        <td style="width:150px;">{{ items.get_specs() }}</td>
+        <td>
+        <form action="{{url_for('remove_cart_item', id=items.get_product_id())}}" method="POST">
+
+              <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal_{{items.get_product_id()}}">
+  Remove all from cart
+</button>
+
+<!-- The Modal -->
+<div class="modal" id="myModal_{{items.get_product_id()}}">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Removal confirmation</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+      Are you sure you want to remove all items from the cart?
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <input type="submit" value="Delete" class="btn btn-danger">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+          </form>
+        </th>
+</td>
+
+
+<!-- The Modal -->
+
+          </form>
+
+
+
+
+
+
+
+
+
+        </td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
+<form style="text-align: center;" action={{url_for('payment')}}>
+
+    <input type="submit" value="payment" />
+</form>
+{% endblock %}
+

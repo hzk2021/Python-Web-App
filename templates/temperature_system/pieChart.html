@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block title %}ATRiX - Bar Chart{% endblock %}
+
+{% block navbar %}
+    {% include "includes/_navbar_staff.html" %}
+{% endblock %}
+
+{% block content %}
+<div class="wrapper">
+    <center>
+        <h1 style="color: white;">{{ title }}</h1>
+
+    <canvas id="chart" width="600" height="400"></canvas>
+    <script>
+      var pieData = [
+        {% for count in range(total_count) %}
+          {
+            {% if values[count] > 37.5 or values[count] < 35 %}
+                value: {{abnormal_count}},
+                label: "{{"Abnormal"}}",
+                color : "{{"#9f2823"}}"
+            {% else %}
+                value: {{normal_count}},
+                label: "{{"Normal"}}",
+                color : "{{"#126400"}}"
+            {% endif %}
+          },
+        {% endfor %}
+
+      ];
+
+      // get bar chart canvas
+      var mychart = document.getElementById("chart").getContext("2d");
+      steps = 10
+      max = {{ max }}
+
+      // draw pie chart
+      new Chart(document.getElementById("chart").getContext("2d")).Pie(pieData);
+
+    </script>
+
+    </center>
+</div>
+{% endblock %}
+

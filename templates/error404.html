@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}Page Not Found{% endblock %}
+{% block head %}
+<link type="text/css" rel="stylesheet" href="{{url_for('static', filename='style/404errorstyle.css')}}">
+{% endblock %}
+
+{% block navbar %}{% endblock %}
+
+{% block content %}
+<div id="notfound">
+    <div class="notfound">
+        <div class="notfound-404">
+            <h1>404</h1>
+            <h2>Page not found</h2>
+        </div>
+        <a href="{{url_for('login')}}">Login Page</a>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}{% endblock %}

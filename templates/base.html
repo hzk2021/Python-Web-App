@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+
+    {% block head %}
+    <!-- google font -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,700&amp;display=swap%7CWork+Sans:100,300,400,500,700,900&amp;display=swap" media="all">
+
+    <!-- add icon link -->
+    <link rel ="icon" href ="{{ url_for('static', filename='images/storelogo.png') }}" type = "image/x-icon">
+
+    <!-- Bootstrap 4.5.2 CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap4.5.3/css/bootstrap.min.css') }}">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" type= "text/css" href="{{ url_for('static', filename='style/style.css') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js'></script>
+    {% endblock %}
+</head>
+
+<body>
+    {% block navbar %}
+        {% include "includes/_navbar_base.html" %}
+    {% endblock %}
+
+    <div class="container-fluid">
+        {% block content %}
+        {% endblock %}
+    </div>
+
+    {% block scripts %}
+    <!-- jQuery 3.5.1, Popper 1.16.1, Bootstrap 4.5.2 JavaScript -->
+    <script src="{{ url_for('static', filename='jquery3.5.1/jquery-3.5.1.slim.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='popper1.16.1/popper.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='bootstrap4.5.3/js/bootstrap.min.js') }}"></script>
+    {% endblock %}
+</body>
+</html>

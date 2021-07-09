@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% block title %}ATRiX - Order List{% endblock %}
+
+{% block navbar %}
+    {% include "includes/_navbar_staff.html" %}
+{% endblock %}
+
+{% block content %}
+<h1 class="display-4" style="text-align: center; color: white;">Order List</h1>
+<div>
+  <table class="table-styling">
+    <thead>
+      <tr>
+        <th>Order ID</th>
+        <th>Supplier Name</th>
+        <th>Item</th>
+        <th>Quantity</th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for order in orders_list %}
+      <tr>
+        <td>{{ order.get_order_id() }}</td>
+        <td>{{ order.get_name() }}</td>
+        <td>{{ order.get_item() }}</td>
+        <td>{{ order.get_quantity() }}</td>
+        <td><a href="/updateOrder/{{order.get_order_id()}}" class="btn btn-warning">Update</a></td>
+        <td>
+          <form action="{{url_for('delete_order', id=order.get_order_id())}}" method="POST">
+            <!--   <input type="submit" value="Delete" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete {{order.get_name()}}?');">-->
+            <!-- Button to Open the Modal -->
+    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal_{{order.get_order_id()}}">
+      Delete
+    </button>
+
+    <!-- The Modal -->
+    <div class="modal" id="myModal_{{order.get_order_id()}}">
+      <div class="modal-dialog">
+        <div class="modal-content">
+
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h4 class="modal-title">Delete Confirmation</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+
+          <!-- Modal body -->
+          <div class="modal-body">
+            Are you sure you want to delete {{order.get_name()}}?
+          </div>
+
+          <!-- Modal footer -->
+          <div class="modal-footer">
+            <input type="submit" value="Delete" class="btn btn-danger">
+           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </form>
+</td>
+
+
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

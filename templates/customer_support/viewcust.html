@@ -1,0 +1,48 @@
+{% extends "home_customer.html" %}
+{% block title %}ATRIX- view feedback{% endblock %}
+
+{% block navbar %}
+    {% include "includes/_navbar_customer.html" %}
+{% endblock %}
+
+{% block content %}
+
+<h1 style="text-align:center; color: white;" class="display-4">View Feedback</h1>
+
+<div>
+  <table class="table-styling">
+    <thead>
+      <tr>
+        <th>Feedback id</th>
+        <th>Name</th>
+        <th>Phone</th>
+        <th>Email</th>
+        <th>Enquiry</th>
+        <th>Service</th>
+        <th>Status</th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for Feedback in feedbacks_list %}
+      <tr>
+        <td>{{ Feedback.get_feedback_id() }}</td>
+        <td>{{ Feedback.get_name() }}</td>
+        <td>{{ Feedback.get_phone() }}</td>
+        <td>{{ Feedback.get_email() }}</td>
+        <td>{{ Feedback.get_enquiry() }}</td>
+        <td>{{ Feedback.get_service() }}</td>
+        <td>{{ Feedback.get_status() }}</td>
+
+        <td>
+
+
+          </form>
+        </td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}
